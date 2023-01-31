@@ -28,7 +28,7 @@ An Arduino Board and the Wekinator App were prominently used to create this proj
 
 The Arduino integrated development environment (IDE) was solely used to allow the Arduino board to connect and contact with the workstation. This would then converse with the Wekinator application to transfer outputs to the board
 
-## Setting up the board
+#### Setting up the board
 
 We would first initialise the physical pins on the connected boards to the LED Bulb
 
@@ -39,18 +39,22 @@ int green_light_pin = 10;
 int blue_light_pin = 9;
 ``` 
 <p align="center">
-  <img width="460" height="300" src=./Images/PictureIDE.png>
+  <img width="235" height="300" src=./images/PictureIDE.png>
 </p>
 
+<p align="center">
 This is what the physical part of the project looked like.
+</p>
 
-Next, create the communication field
+
+#### Communication Field
+
+This was used to set up the signal which would allow the pins to communicate.
 
 ```
 void setup()
 {
-  /* Starting the serial communication because we are communicating with the
-    Processing through serial. The baudrate should be same as on the processing side. */
+  /* Starting the serial communication - Processing through serial. The baudrate should be same as on the processing side. */
   Serial.begin(19200);
   pinMode(red_light_pin, OUTPUT);
   pinMode(green_light_pin, OUTPUT);
@@ -61,6 +65,50 @@ void setup()
 }
 ```
 
+#### Colours
 
+Lastly, setting up the LED Pins to emit colour. As they were all RBG bulbs, they had to be set up using the Decimal Code (R, G, B):
 
+```
+void loop()
+{
+  // Receiving the output from the processing.
+  receiver.sync();
 
+  // Matching the received output to light up the RGB LED
+  if (output == 1)
+  {
+    RGB_color(255, 0, 0); // Red
+  }
+  else if (output == 2)
+  {
+    RGB_color(0, 255, 0); // Green
+  }
+  else if (output == 3)
+  {
+    RGB_color(0, 0, 255); // Blue
+  }
+}
+```
+
+### Wekinator
+Wekinator is an open source machine learning programme with a simple interface which allows you to use any OSC (Open Sound Control) output and input. In this case, our input will be facial expressions, and our output will be the LED Bulbs on the Arduino
+
+<p align="center">
+  <img width="400" height="300" src=./images/Image13.png>
+</p>
+
+<p align="center">
+This is the core system of Wekinator's FaceOSC, using openFrameworks
+</p>
+
+With Wekinator to 'record' facial features from openFrameworks - this allows the software to train different features by using the record button on Wekinator
+
+<p align="center">
+  <img width="400" height="275" src=./images/image14.jpg>
+</p>
+
+<p align="center">
+Diagram showing on Wekinator uses the inputs and outputs into different applications
+openFrameworks > Wekinator > Arduino Board
+</p>
