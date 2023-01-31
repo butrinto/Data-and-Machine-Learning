@@ -26,6 +26,10 @@ An Arduino Board and the Wekinator App were prominently used to create this proj
 
 ### Arduino IDE
 
+The Arduino integrated development environment (IDE) was solely used to allow the Arduino board to connect and contact with the workstation. This would then converse with the Wekinator application to transfer outputs to the board
+
+## Setting up the board
+
 We would first initialise the physical pins on the connected boards to the LED Bulb
 
 ```
@@ -34,6 +38,11 @@ int red_light_pin = 11;
 int green_light_pin = 10;
 int blue_light_pin = 9;
 ``` 
+<p align="center">
+  <img width="460" height="300" src=./Images/PictureIDE.png>
+</p>
+
+This is what the physical part of the project looked like.
 
 Next, create the communication field
 
