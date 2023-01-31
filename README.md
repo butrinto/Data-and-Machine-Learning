@@ -1,4 +1,4 @@
-# Data-and-Machine-Learning
+# Data and Machine Learning
 
 This project incorporates the use of Machine Learning to train a user’s facial expressions; converting these trained expressions to control an Arduino board, programming it to light up an LED in various colours.
 
@@ -34,5 +34,24 @@ int red_light_pin = 11;
 int green_light_pin = 10;
 int blue_light_pin = 9;
 ``` 
+
+Next, create the communication field
+
+```
+void setup()
+{
+  /* Starting the serial communication because we are communicating with the
+    Processing through serial. The baudrate should be same as on the processing side. */
+  Serial.begin(19200);
+  pinMode(red_light_pin, OUTPUT);
+  pinMode(green_light_pin, OUTPUT);
+  pinMode(blue_light_pin, OUTPUT);
+
+  // Synchronizing the variable with the processing. The variable must be int type.
+  receiver.observe(output);
+}
+```
+
+
 
 
